@@ -4,6 +4,7 @@ const Container = ({ children }: { children: any }) => (
 	<html>
 		<head>
 			<script src="/assets/app.js" defer />
+			<link rel="stylesheet" href="/assets/style.css" />
 		</head>
 
 		<body>

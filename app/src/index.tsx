@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
+import "./styles/style.less";
+
 import App from './App';
 import { createStore } from './store';
 

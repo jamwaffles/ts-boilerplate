@@ -1,28 +1,68 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== "production";
+
 module.exports = {
-    entry: [ "./src/index.tsx" ],
-    output: {
-        filename: "app.js",
-        path: __dirname + "/dist",
-        publicPath: "/assets"
-    },
+  entry: ["./src/index.tsx"],
+  output: {
+    filename: "app.js",
+    path: __dirname + "/dist",
+    publicPath: "/assets"
+  },
 
-    mode: 'development',
+  mode: "development",
 
-    // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+  devtool: "source-map",
 
-    resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js", ".json"]
-    },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json", ".less"]
+  },
 
-    module: {
-        rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: "awesome-typescript-loader",
+            options: {
+              useCache: true
+            }
+          }
         ]
+      },
+
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+
+      {
+        test: /\.less$/,
+        use: [
+          // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader" // translates CSS into CommonJS
+          },
+          {
+            loader: "less-loader" // compiles Less to CSS
+          }
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "style.css"
+    })
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: "styles",
+          test: /\.css$/,
+          chunks: "all",
+          enforce: true
+        }
+      }
     }
+  }
 };
