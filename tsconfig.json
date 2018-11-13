@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es2016"
+    ],
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "inlineSourceMap": true,
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "noImplicitUseStrict": false,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "jsx": "React"
+  }
+}
