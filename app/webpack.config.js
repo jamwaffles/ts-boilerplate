@@ -1,9 +1,12 @@
 module.exports = {
-    entry: "./src/index.tsx",
+    entry: [ "./src/index.tsx" ],
     output: {
         filename: "app.js",
-        path: __dirname + "/dist"
+        path: __dirname + "/dist",
+        publicPath: "/assets"
     },
+
+    mode: 'development',
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",

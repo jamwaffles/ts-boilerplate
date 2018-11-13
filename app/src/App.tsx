@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-const Thing = () => (
-	<div>
+const App = () => (
+	<div style={{ backgroundColor: 'blue' }}>
 		I'm not a toaster
 
 		{typeof window !== 'undefined' ? <div>Browser!</div> : <div>Not browser</div>}
 	</div>
 );
 
-export default Thing;
+export default App;
