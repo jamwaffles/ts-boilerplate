@@ -4,20 +4,23 @@
   "description": "Retrospectives tool",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node .",
-    "start:dev": "nodemon"
+    "start": "ts-node ./src/server",
+    "start:dev": "nodemon",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development"
   },
   "author": "-",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@types/koa": "^2.0.46",
+    "@types/koa-static-cache": "^5.1.0",
     "@types/node": "^10.12.7",
     "@types/react": "^16.7.4",
     "@types/react-dom": "^16.0.9",
     "classnames": "^2.2.6",
     "koa": "^2.6.2",
-    "koa-static": "^5.0.0",
+    "koa-static-cache": "^5.1.2",
     "less": "^3.8.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -25,21 +28,23 @@
     "react-router": "^4.3.1",
     "redux": "^4.0.1",
     "ts-node": "^7.0.1",
-    "typescript": "^3.1.6",
-    "webpack": "^4.25.1"
+    "typescript": "^3.1.6"
   },
   "devDependencies": {
-    "nodemon": "^1.18.6"
+    "awesome-typescript-loader": "^5.2.1",
+    "nodemon": "^1.18.6",
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
   },
   "nodemonConfig": {
     "watch": [
-      "src",
-      "server"
+      "src"
     ],
     "ext": "ts,tsx,json",
     "ignore": [
       "dist"
     ],
-    "exec": "ts-node ."
+    "exec": "ts-node ./src/server"
   }
 }
