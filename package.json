@@ -1,0 +1,9 @@
+{
+  "name": "retrospectify",
+  "version": "0.1.0",
+  "description": "Retrospectives tool",
+  "main": "index.js",
+  "author": "-",
+  "license": "MIT",
+  "private": true
+}
