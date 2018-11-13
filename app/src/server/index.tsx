@@ -6,14 +6,18 @@ import * as webpack from 'webpack';
 import * as devMiddleware from 'webpack-dev-middleware';
 import * as koaWebpack from 'koa-webpack';
 import * as Webpack from 'webpack';
+import { StaticRouter } from "react-router";
 
 const webpackConfig = require('../../webpack.config.js');
 
 import App from '../App';
 import Container from './Container';
+import { createStore } from '../store';
 
 const app = new Koa();
 const compiler = Webpack(webpackConfig);
+
+const store = createStore();
 
 koaWebpack({ compiler })
 	.then((middleware: any) => {
@@ -23,11 +27,15 @@ koaWebpack({ compiler })
 			prefix: '/assets'
 		}));
 
+
+
 		app.use(async ctx => {
 			ctx.body = ReactDOMServer.renderToString(
-				<Container>
-					<App />
-				</Container>
+				<StaticRouter location={ctx.request.url} context={{}}>
+					<Container>
+						<App store={store} />
+					</Container>
+				</StaticRouter>
 			);
 		});
 
