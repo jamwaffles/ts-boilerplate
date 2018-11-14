@@ -6,7 +6,7 @@ import * as webpack from 'webpack';
 import * as devMiddleware from 'webpack-dev-middleware';
 import * as koaWebpack from 'koa-webpack';
 import * as Webpack from 'webpack';
-import { StaticRouter } from "react-router";
+import { StaticRouter } from 'react-router';
 
 const webpackConfig = require('../../webpack.config.js');
 
@@ -19,28 +19,32 @@ const compiler = Webpack(webpackConfig);
 
 const store = createStore();
 
-koaWebpack({ compiler })
-	.then((middleware: any) => {
-		app.use(middleware);
+koaWebpack({
+	compiler,
+	devMiddleware: {
+		serverSideRender: true,
+		publicPath: '/assets/'
+	}
+}).then((middleware: any) => {
+	app.use(middleware);
 
-		app.use(assets('./dist', {
+	app.use(
+		assets('./dist', {
 			prefix: '/assets'
-		}));
+		})
+	);
 
+	app.use(async ctx => {
+		ctx.body = ReactDOMServer.renderToString(
+			<StaticRouter location={ctx.request.url} context={{}}>
+				<Container>
+					<App store={store} />
+				</Container>
+			</StaticRouter>
+		);
+	});
 
+	const port = process.env.PORT || 7175;
 
-		app.use(async ctx => {
-			ctx.body = ReactDOMServer.renderToString(
-				<StaticRouter location={ctx.request.url} context={{}}>
-					<Container>
-						<App store={store} />
-					</Container>
-				</StaticRouter>
-			);
-		});
-
-		const port = process.env.PORT || 7175;
-
-		app.listen(port);
-
+	app.listen(port);
 });

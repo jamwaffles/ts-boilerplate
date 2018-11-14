@@ -6,7 +6,7 @@ module.exports = {
   output: {
     filename: "app.js",
     path: __dirname + "/dist",
-    publicPath: "/assets"
+    publicPath: "/assets/"
   },
 
   mode: "development",
@@ -36,8 +36,8 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          MiniCssExtractPlugin.loader,
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
           {
             loader: "css-loader" // translates CSS into CommonJS
           },

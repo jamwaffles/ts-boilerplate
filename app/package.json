@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node ./src/server",
     "start:dev": "nodemon",
-    "build": "webpack --mode production",
+    "build": "NODE_ENV=production webpack --mode production",
     "build:dev": "webpack --mode development"
   },
   "author": "-",
