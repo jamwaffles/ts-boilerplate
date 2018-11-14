@@ -10,13 +10,13 @@ export const routes = [
 ];
 
 const App = ({ store }: { store: Store }) => (
-	<Provider store={store}>
-		<div>
-			<Switch>
-			  {routes.map(route => <Route key={route.path} {...route} />)}
-			</Switch>
-		</div>
-	</Provider>
+  <Provider store={store}>
+    <div>
+      <Switch>
+        {routes.map(route => <Route key={route.path} {...route} />)}
+      </Switch>
+    </div>
+  </Provider>
 );
 
 export default App;

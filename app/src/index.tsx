@@ -14,7 +14,7 @@ const store = createStore();
 const container = document.getElementById('app');
 
 ReactDOM.render(
-	<BrowserRouter>
-		<App store={store} />
-	</BrowserRouter>
+  <BrowserRouter>
+    <App store={store} />
+  </BrowserRouter>
 , container);

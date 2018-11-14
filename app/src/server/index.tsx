@@ -20,31 +20,31 @@ const compiler = Webpack(webpackConfig);
 const store = createStore();
 
 koaWebpack({
-	compiler,
-	devMiddleware: {
-		serverSideRender: true,
-		publicPath: '/assets/'
-	}
+  compiler,
+  devMiddleware: {
+    serverSideRender: true,
+    publicPath: '/assets/'
+  }
 }).then((middleware: any) => {
-	app.use(middleware);
+  app.use(middleware);
 
-	app.use(
-		assets('./dist', {
-			prefix: '/assets'
-		})
-	);
+  app.use(
+    assets('./dist', {
+      prefix: '/assets'
+    })
+  );
 
-	app.use(async ctx => {
-		ctx.body = ReactDOMServer.renderToString(
-			<StaticRouter location={ctx.request.url} context={{}}>
-				<Container>
-					<App store={store} />
-				</Container>
-			</StaticRouter>
-		);
-	});
+  app.use(async ctx => {
+    ctx.body = ReactDOMServer.renderToString(
+      <StaticRouter location={ctx.request.url} context={{}}>
+        <Container>
+          <App store={store} />
+        </Container>
+      </StaticRouter>
+    );
+  });
 
-	const port = process.env.PORT || 7175;
+  const port = process.env.PORT || 7175;
 
-	app.listen(port);
+  app.listen(port);
 });
