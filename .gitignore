@@ -2,3 +2,5 @@ node_modules/
 dist/
 *.log
 .awcache
+coverage/
+.nyc_output/

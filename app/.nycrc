@@ -1,0 +1,20 @@
+{
+  "check-coverage": true,
+  "per-file": true,
+  "include": [
+    "src/**/*.{ts,tsx}"
+  ],
+  "exclude": [
+    "src/**/*.test.*"
+  ],
+  "reporter": [
+    "lcov",
+    "text-summary"
+  ],
+  "extension": [
+    ".tsx",
+    ".ts"
+  ],
+  "cache": true,
+  "all": true
+}

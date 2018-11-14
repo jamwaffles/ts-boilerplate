@@ -1,20 +1,20 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV !== "production";
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: ["./src/index.tsx"],
+  entry: ['./src/index.tsx'],
   output: {
-    filename: "app.js",
-    path: __dirname + "/dist",
-    publicPath: "/assets/"
+    filename: 'app.js',
+    path: __dirname + '/dist',
+    publicPath: '/assets/'
   },
 
-  mode: "development",
+  mode: 'development',
 
-  devtool: "source-map",
+  devtool: 'source-map',
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json", ".less"]
+    extensions: ['.ts', '.tsx', '.js', '.json', '.less']
   },
 
   module: {
@@ -23,7 +23,7 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "awesome-typescript-loader",
+            loader: 'awesome-typescript-loader',
             options: {
               useCache: true
             }
@@ -31,7 +31,7 @@ module.exports = {
         ]
       },
 
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
 
       {
         test: /\.less$/,
@@ -39,10 +39,10 @@ module.exports = {
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           // MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader" // translates CSS into CommonJS
+            loader: 'css-loader' // translates CSS into CommonJS
           },
           {
-            loader: "less-loader" // compiles Less to CSS
+            loader: 'less-loader' // compiles Less to CSS
           }
         ]
       }
@@ -50,16 +50,16 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "style.css"
+      filename: 'style.css'
     })
   ],
   optimization: {
     splitChunks: {
       cacheGroups: {
         styles: {
-          name: "styles",
+          name: 'styles',
           test: /\.css$/,
-          chunks: "all",
+          chunks: 'all',
           enforce: true
         }
       }
