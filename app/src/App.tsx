@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Store } from 'redux';
 import { Switch, Route } from 'react-router';
 import { Provider } from 'react-redux';
+import { hot } from 'react-hot-loader'
 
 import Auth from './pages/Auth';
 
@@ -19,4 +20,4 @@ const App = ({ store }: { store: Store }) => (
   </Provider>
 );
 
-export default App;
+export default hot(module)(App);
