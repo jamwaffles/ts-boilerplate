@@ -1,7 +1,7 @@
 {
-  "name": "retrospectify",
+  "name": "ts-boilerplate",
   "version": "0.1.0",
-  "description": "Retrospectives tool",
+  "description": "TS boilerplate",
   "main": "index.js",
   "scripts": {
     "start": "ts-node ./src/server",
