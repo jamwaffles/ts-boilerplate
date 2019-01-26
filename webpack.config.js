@@ -1,6 +1,8 @@
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const devMode = process.env.NODE_ENV !== 'production';
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: ['./src/index.tsx'],
@@ -15,19 +17,38 @@ module.exports = {
   devtool: 'source-map',
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.less']
+    extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
+    alias: {
+      "@assets": path.resolve(__dirname, "assets/")
+    }
   },
 
   module: {
     rules: [
       {
+        test: /\.(png|jpg|gif|jpeg|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              fallback: 'file-loader'
+            }
+          }
+        ]
+      },
+
+      {
         test: /\.tsx?$/,
-        exclude: /node_modules/,
+        exclude: /(node_modules|assets)/,
         use: {
           loader: "babel-loader",
           options: {
             cacheDirectory: true,
             babelrc: false,
+            exclude: [
+             "assets"
+            ],
             presets: [
               [
                 "@babel/preset-env",
@@ -36,9 +57,11 @@ module.exports = {
               "@babel/preset-typescript",
               "@babel/preset-react"
             ],
-            plugins: [
+            plugins: devMode ? [
               ["@babel/plugin-proposal-class-properties", { loose: true }],
               "react-hot-loader/babel"
+            ] : [
+              ["@babel/plugin-proposal-class-properties", { loose: true }],
             ]
           }
         }
