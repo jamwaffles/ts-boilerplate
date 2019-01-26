@@ -6,15 +6,13 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: ['./src/index.tsx'],
+  entry: ['./src/server/index.tsx'],
   output: {
-    filename: 'app.js',
-    chunkFilename: '[name].chunk.js',
-    path: __dirname + '/dist/assets',
-    publicPath: '/assets/'
+    filename: 'server.js',
+    path: __dirname + '/dist'
   },
 
-  devtool: devMode ? 'cheap-module-source-map' : 'source-map',
+  target: 'node',
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
@@ -31,7 +29,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: devMode ? '[name].[ext]' : '[name].[hash].[ext]',
+              name: devMode ? 'assets/[name].[ext]' : 'assets/[name].[hash].[ext]',
               limit: 8192,
               fallback: 'file-loader'
             }
@@ -48,12 +46,12 @@ module.exports = {
             cacheDirectory: true,
             babelrc: false,
             exclude: [
-              "assets"
+             "assets"
             ],
             presets: [
               [
                 "@babel/preset-env",
-                { targets: { browsers: "last 2 versions" } } // or whatever your project requires
+                { targets: { node: true } }
               ],
               "@babel/preset-typescript",
               "@babel/preset-react"
@@ -68,43 +66,43 @@ module.exports = {
         }
       },
 
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
+      // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
 
-      {
-        test: /\.less$/,
-        use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          // MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader' // translates CSS into CommonJS
-          },
-          {
-            loader: 'less-loader' // compiles Less to CSS
-          }
-        ]
-      }
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+      //     // MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader' // translates CSS into CommonJS
+      //     },
+      //     {
+      //       loader: 'less-loader' // compiles Less to CSS
+      //     }
+      //   ]
+      // }
     ]
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: devMode ? '[name].css' : '[name].[hash].css',
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-    }),
-    new ForkTsCheckerWebpackPlugin(),
-    new ManifestPlugin({
-      fileName: 'asset-manifest.json',
-    }),
-  ],
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true
-        }
-      }
-    }
-  }
+  // plugins: [
+  //   new MiniCssExtractPlugin({
+  //     filename: devMode ? '[name].css' : '[name].[hash].css',
+  //     chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+  //   }),
+  //   new ForkTsCheckerWebpackPlugin(),
+  //   new ManifestPlugin({
+  //     fileName: 'asset-manifest.json',
+  //   }),
+  // ],
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       styles: {
+  //         name: 'styles',
+  //         test: /\.css$/,
+  //         chunks: 'all',
+  //         enforce: true
+  //       }
+  //     }
+  //   }
+  // }
 };

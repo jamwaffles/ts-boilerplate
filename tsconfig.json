@@ -4,9 +4,9 @@
       "dom",
       "es2016"
     ],
+    "moduleResolution": "node",
     "target": "es6",
     "module": "commonjs",
-    "moduleResolution": "node",
     "isolatedModules": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -19,6 +19,11 @@
     "suppressImplicitAnyIndexErrors": true,
     "rootDir": "src",
     "outDir": "dist",
-    "jsx": "React"
-  }
+    "jsx": "React",
+    "strict": true,
+    "noEmit": true,
+  },
+  "include": [
+    "src"
+  ]
 }

@@ -4,10 +4,12 @@
   "description": "TS boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node ./src/server",
+    "start": "node dist/server.js",
     "start:dev": "nodemon",
     "build": "NODE_ENV=production webpack --mode production",
     "build:dev": "webpack --mode development",
+    "build:server": "NODE_ENV=production webpack --config webpack.config.server.js --mode production",
+    "build:server:dev": "webpack --config webpack.config.server.js --mode development",
     "test": "nyc mocha './src/**/*.test.{ts,tsx}'",
     "clean": "rm -rf dist"
   },
@@ -68,10 +70,12 @@
     "react-hot-loader": "^4.3.12",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
+    "tslint": "^5.12.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-middleware": "^3.4.0"
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-manifest-plugin": "^2.0.4"
   },
   "nodemonConfig": {
     "watch": [
@@ -79,8 +83,9 @@
     ],
     "ext": "ts,tsx,json",
     "ignore": [
-      "dist"
+      "dist",
+      "assets"
     ],
-    "exec": "ts-node ./src/server"
+    "exec": "ts-node ./src/server/index.dev.tsx"
   }
 }

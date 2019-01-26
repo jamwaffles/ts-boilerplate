@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import small from '@assets/small.jpg';
-import large from '@assets/large.jpg';
+import large from '../../assets/large.jpg';
 import { testAuthAction } from '../actions/auth';
 
 // TODO: FIx <any, any>

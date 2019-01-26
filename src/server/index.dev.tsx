@@ -9,10 +9,29 @@ import logger from './logger';
 import * as Webpack from 'webpack';
 import { StaticRouter } from 'react-router';
 
+const webpackConfig = require('../../webpack.config.js');
+
 import app from './app';
+import App from '../App';
+import Container from './Container';
+import { createStore } from '../store';
+
+const compiler = Webpack(webpackConfig);
+
+const store = createStore();
 
 const port = process.env.PORT || 7175;
 
-logger.info('serverStarted', { port });
+koaWebpack({
+  compiler,
+  devMiddleware: {
+    serverSideRender: true,
+    publicPath: '/assets/'
+  }
+}).then((middleware: any) => {
+  app.use(middleware);
 
-app.listen(port);
+  logger.info('serverStarted', { port });
+
+  app.listen(port);
+});
