@@ -4,6 +4,7 @@
       "dom",
       "es2016"
     ],
+    "baseUrl": ".",
     "moduleResolution": "node",
     "target": "es6",
     "module": "commonjs",
@@ -21,9 +22,17 @@
     "outDir": "dist",
     "jsx": "React",
     "strict": true,
-    "noEmit": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/typings"
+    ]
   },
   "include": [
     "src"
-  ]
+  ],
+  "paths": {
+    "assets/*": "image-mock.ts",
+    "*.jpg": "image-mock.ts",
+    "assets/small.jpg": "image-mock.ts",
+  }
 }

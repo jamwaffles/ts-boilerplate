@@ -7,12 +7,15 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: ['./src/index.tsx'],
+
   output: {
     filename: 'app.js',
     chunkFilename: '[name].chunk.js',
     path: __dirname + '/dist/assets',
     publicPath: '/assets/'
   },
+
+  mode: devMode ? 'development' : 'production',
 
   devtool: devMode ? 'cheap-module-source-map' : 'source-map',
 
@@ -46,24 +49,7 @@ module.exports = {
           loader: "babel-loader",
           options: {
             cacheDirectory: true,
-            babelrc: false,
-            exclude: [
-              "assets"
-            ],
-            presets: [
-              [
-                "@babel/preset-env",
-                { targets: { browsers: "last 2 versions" } } // or whatever your project requires
-              ],
-              "@babel/preset-typescript",
-              "@babel/preset-react"
-            ],
-            plugins: devMode ? [
-              ["@babel/plugin-proposal-class-properties", { loose: true }],
-              "react-hot-loader/babel"
-            ] : [
-              ["@babel/plugin-proposal-class-properties", { loose: true }],
-            ]
+            plugins: devMode ? ["react-hot-loader/babel"] : []
           }
         }
       },

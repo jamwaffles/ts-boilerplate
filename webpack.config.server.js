@@ -43,25 +43,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            cacheDirectory: true,
-            babelrc: false,
-            exclude: [
-             "assets"
-            ],
-            presets: [
-              [
-                "@babel/preset-env",
-                { targets: { node: true } }
-              ],
-              "@babel/preset-typescript",
-              "@babel/preset-react"
-            ],
-            plugins: devMode ? [
-              ["@babel/plugin-proposal-class-properties", { loose: true }],
-              "react-hot-loader/babel"
-            ] : [
-              ["@babel/plugin-proposal-class-properties", { loose: true }],
-            ]
+            cacheDirectory: true
           }
         }
       },
