@@ -1,10 +1,12 @@
 import * as React from 'react';
 
+import asset from './utils/asset';
+
 const Container = ({ children }: { children: any }) => (
   <html>
     <head>
-      <script src="/assets/app.js" defer />
-      <link rel="stylesheet" href="/assets/style.css" />
+      <script src={asset('main.js')} defer />
+      <link rel="stylesheet" href={asset('main.css')} />
     </head>
 
     <body>

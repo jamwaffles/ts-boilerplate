@@ -9,7 +9,7 @@ module.exports = {
   entry: ['./src/index.tsx'],
 
   output: {
-    filename: 'app.js',
+    filename: devMode ? 'main.js' : 'main.[hash].js',
     chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, 'dist/assets'),
     publicPath: '/assets/'
@@ -72,7 +72,7 @@ module.exports = {
     }),
     new ForkTsCheckerWebpackPlugin(),
     new ManifestPlugin({
-      fileName: 'asset-manifest.json',
+      fileName: '../asset-manifest.json',
     }),
   ],
   optimization: {

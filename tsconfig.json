@@ -17,6 +17,7 @@
     "removeComments": false,
     "preserveConstEnums": true,
     "strictNullChecks": true,
+    "resolveJsonModule": true,
     "suppressImplicitAnyIndexErrors": true,
     "rootDir": "src",
     "outDir": "dist",

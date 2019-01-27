@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as Koa from 'koa';
 import * as ReactDOMServer from 'react-dom/server';
-import * as assets from 'koa-static-cache';
+import * as mount from 'koa-mount';
+import * as serve from 'koa-static';
 import logger from './logger';
 import { StaticRouter } from 'react-router';
 
@@ -12,11 +13,7 @@ import { createStore } from '../store';
 export function init(app: any) {
   const store = createStore();
 
-  app.use(
-    assets('./dist', {
-      prefix: '/assets'
-    })
-  );
+  app.use(mount('/assets', serve('./dist/assets')));
 
   app.use(async (ctx: any) => {
     ctx.body = ReactDOMServer.renderToString(
