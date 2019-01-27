@@ -11,7 +11,7 @@ module.exports = {
   output: {
     filename: 'app.js',
     chunkFilename: '[name].chunk.js',
-    path: __dirname + '/dist/assets',
+    path: path.resolve(__dirname, 'dist/assets'),
     publicPath: '/assets/'
   },
 
@@ -20,10 +20,7 @@ module.exports = {
   devtool: devMode ? 'cheap-module-source-map' : 'source-map',
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
-    alias: {
-      "@assets": path.resolve(__dirname, "assets/")
-    }
+    extensions: ['.ts', '.tsx', '.js', '.json', '.less']
   },
 
   module: {
@@ -54,13 +51,10 @@ module.exports = {
         }
       },
 
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
-
       {
         test: /\.less$/,
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          // MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader' // translates CSS into CommonJS
           },

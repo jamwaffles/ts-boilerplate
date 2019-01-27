@@ -9,16 +9,14 @@ module.exports = {
   entry: ['./src/server/index.tsx'],
   output: {
     filename: 'server.js',
-    path: __dirname + '/dist'
+    path: __dirname + '/dist',
+    publicPath: '/assets/'
   },
 
   target: 'node',
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
-    alias: {
-      "@assets": path.resolve(__dirname, "assets/")
-    }
+    extensions: ['.ts', '.tsx', '.js', '.json', '.less']
   },
 
   module: {
@@ -29,7 +27,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              name: devMode ? 'assets/[name].[ext]' : 'assets/[name].[hash].[ext]',
+              name: devMode ? '[name].[ext]' : '[name].[hash].[ext]',
               limit: 8192,
               fallback: 'file-loader'
             }

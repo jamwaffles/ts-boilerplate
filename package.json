@@ -83,7 +83,7 @@
   },
   "nodemonConfig": {
     "watch": [
-      "src"
+      "src/server"
     ],
     "ext": "ts,tsx,json",
     "ignore": [
