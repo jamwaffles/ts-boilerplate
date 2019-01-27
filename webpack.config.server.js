@@ -45,44 +45,6 @@ module.exports = {
           }
         }
       },
-
-      // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
-
-      // {
-      //   test: /\.less$/,
-      //   use: [
-      //     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-      //     // MiniCssExtractPlugin.loader,
-      //     {
-      //       loader: 'css-loader' // translates CSS into CommonJS
-      //     },
-      //     {
-      //       loader: 'less-loader' // compiles Less to CSS
-      //     }
-      //   ]
-      // }
     ]
   },
-  // plugins: [
-  //   new MiniCssExtractPlugin({
-  //     filename: devMode ? '[name].css' : '[name].[hash].css',
-  //     chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-  //   }),
-  //   new ForkTsCheckerWebpackPlugin(),
-  //   new ManifestPlugin({
-  //     fileName: 'asset-manifest.json',
-  //   }),
-  // ],
-  // optimization: {
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       styles: {
-  //         name: 'styles',
-  //         test: /\.css$/,
-  //         chunks: 'all',
-  //         enforce: true
-  //       }
-  //     }
-  //   }
-  // }
 };
