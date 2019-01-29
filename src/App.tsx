@@ -16,7 +16,7 @@ const App = ({ store }: { store: Store }) => (
   <Provider store={store}>
     <div>
       <Switch>
-        {routes.map(route => <Route key={route.path} {...route} />)}
+        {routes.map((route: any): any => <Route key={route.path} {...route} />)}
       </Switch>
     </div>
   </Provider>
