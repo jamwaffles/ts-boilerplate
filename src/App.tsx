@@ -4,11 +4,11 @@ import { Switch, Route } from 'react-router';
 import { Provider } from 'react-redux';
 import { hot } from 'react-hot-loader'
 
-import * as Home from './pages/Home';
-import * as Auth from './pages/Auth';
+import Home from './pages/Home';
+import Auth from './pages/Auth';
 
 export const routes = [
-  { path: '/', component: Home },
+  { path: '/', exact: true, component: Home },
   { path: '/auth', component: Auth },
 ];
 
