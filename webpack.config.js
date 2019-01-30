@@ -56,10 +56,23 @@ module.exports = {
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader' // translates CSS into CommonJS
+            loader: 'css-loader'
           },
           {
-            loader: 'less-loader' // compiles Less to CSS
+            loader: 'less-loader'
+          }
+        ]
+      },
+
+      {
+        test: /\.sass$/,
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader'
           }
         ]
       }
