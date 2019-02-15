@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import asset from './utils/asset';
 
-const Container = ({ children }: { children: any }) => (
+const Container = ({ children, store, helmet }: { children: string, store: any, helmet: any }) => (
   <html>
     <head>
       <link rel="stylesheet" href={asset('main.css')} />
@@ -10,9 +10,9 @@ const Container = ({ children }: { children: any }) => (
     </head>
 
     <body>
-      <main id="app">
-        {children}
-      </main>
+      <main id="app" dangerouslySetInnerHTML={{ __html: children }} />
+
+      <div id="initial_state" data-state={JSON.stringify(store.getState())} />
     </body>
   </html>
 );

@@ -9,19 +9,12 @@ import { StaticRouter } from 'react-router';
 import App from '../App';
 import Container from './Container';
 import { createStore } from '../store';
+import router from './router';
 
 export function init(app: any) {
   const store = createStore();
 
   app.use(mount('/assets', serve('./dist/assets')));
 
-  app.use(async (ctx: any) => {
-    ctx.body = ReactDOMServer.renderToString(
-      <StaticRouter location={ctx.request.url} context={{}}>
-        <Container>
-          <App store={store} />
-        </Container>
-      </StaticRouter>
-    );
-  });
+  app.use(router.routes());
 }

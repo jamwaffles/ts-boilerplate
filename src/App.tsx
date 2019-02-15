@@ -7,7 +7,7 @@ import { hot } from 'react-hot-loader'
 import Home from './pages/Home';
 import Auth from './pages/Auth';
 
-export const routes = [
+export const routes: any[] = [
   { path: '/', exact: true, component: Home },
   { path: '/auth', component: Auth },
 ];
