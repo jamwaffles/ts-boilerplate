@@ -3,6 +3,12 @@ import { Button } from 'react-bulma-components';
 import { Helmet } from 'react-helmet';
 
 export default class Home extends React.PureComponent<any, any> {
+  static fetchData() {
+    console.log("Homepage fetch data");
+
+    return Promise.resolve();
+  }
+
   render() {
     return (
       <div>

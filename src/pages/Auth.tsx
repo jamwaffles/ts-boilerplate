@@ -8,6 +8,12 @@ const large = require('../../assets/large.jpg');
 
 // TODO: FIx <any, any>
 class Auth extends React.PureComponent<any, any> {
+  static fetchData() {
+    console.log("Auth page fetch data");
+
+    return Promise.resolve();
+  }
+
   handleClick = () => {
     this.props.dispatch(testAuthAction(100))
   }
