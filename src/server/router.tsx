@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as Router from 'koa-router';
 import { Context } from 'koa';
+import { Helmet } from 'react-helmet';
 import * as ReactDOMServer from 'react-dom/server';
 import { StaticRouter, StaticRouterContext, matchPath } from 'react-router';
 
@@ -39,8 +40,10 @@ router.get('*', async (ctx: Context) => {
     </StaticRouter>
   );
 
+  const helmet = Helmet.renderStatic();
+
   const markup = ReactDOMServer.renderToString(
-    <Container store={store}>
+    <Container store={store} helmet={helmet}>
       {page}
     </Container>
   );

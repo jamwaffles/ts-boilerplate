@@ -5,6 +5,9 @@ import asset from './utils/asset';
 const Container = ({ children, store, helmet }: { children: string, store: any, helmet: any }) => (
   <html>
     <head>
+      {helmet.title.toComponent()}
+      {helmet.meta.toComponent()}
+      {helmet.link.toComponent()}
       <link rel="stylesheet" href={asset('main.css')} />
       <script src={asset('main.js')} defer />
     </head>

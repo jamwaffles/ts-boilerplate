@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import { testAuthAction } from '../actions/auth';
 const small = require('../../assets/small.jpg');
@@ -14,6 +15,10 @@ class Auth extends React.PureComponent<any, any> {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>Auth</title>
+        </Helmet>
+
         <div>Auth here</div>
 
         <p>Something: {this.props.auth.something}</p>
