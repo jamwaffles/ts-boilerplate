@@ -11,10 +11,16 @@ import Container from './Container';
 import { createStore } from '../store';
 import router from './router';
 
+import { basePathRedirect } from './middleware';
+
+const basePath = process.env.BASE_PATH || '';
+
 export function init(app: any) {
   const store = createStore();
 
-  app.use(mount('/assets', serve('./dist/assets')));
+  app.use(basePathRedirect);
+
+  app.use(mount(`${basePath}/assets`, serve('./dist/assets')));
 
   app.use(router.routes());
 }
