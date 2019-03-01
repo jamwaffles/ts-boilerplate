@@ -11,8 +11,10 @@ const store = createStore();
 
 const container = document.getElementById('app');
 
+const basePath = process.env.BASE_PATH || '';
+
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={basePath}>
     <App store={store} />
   </BrowserRouter>
 , container);

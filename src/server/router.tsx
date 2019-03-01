@@ -11,7 +11,9 @@ import { createStore } from '../store';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const router = new Router();
+const basePath = process.env.BASE_PATH || '';
+
+const router = new Router().prefix(basePath);
 
 router.get('*', async (ctx: Context) => {
   const store = createStore();
@@ -35,7 +37,7 @@ router.get('*', async (ctx: Context) => {
   const context: { status?: number } = {};
 
   const page = ReactDOMServer.renderToString(
-    <StaticRouter location={ctx.request.url} context={context as StaticRouterContext}>
+    <StaticRouter basename={basePath} location={ctx.request.url} context={context as StaticRouterContext}>
       <App store={store} />
     </StaticRouter>
   );

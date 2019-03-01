@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: 'server.js',
     path: __dirname + '/dist',
-    publicPath: '/assets/'
+    publicPath: `${basePath}/assets/`
   },
 
   target: 'node',

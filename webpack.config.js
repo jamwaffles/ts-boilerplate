@@ -1,9 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
+const basePath = process.env.BASE_PATH || '';
 
 module.exports = {
   entry: ['./src/index.tsx'],
@@ -12,7 +14,7 @@ module.exports = {
     filename: devMode ? 'main.js' : 'main.[hash].js',
     chunkFilename: '[name].chunk.js',
     path: path.resolve(__dirname, 'dist/assets'),
-    publicPath: '/assets/'
+    publicPath: `${basePath}/assets/`
   },
 
   mode: devMode ? 'development' : 'production',
@@ -79,6 +81,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.EnvironmentPlugin(['NODE_ENV', 'BASE_PATH']),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
