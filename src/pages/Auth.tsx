@@ -25,7 +25,7 @@ class Auth extends React.PureComponent<any, any> {
           <title>Auth</title>
         </Helmet>
 
-        <div>Auth here</div>
+        <div className="auth-page">Auth here</div>
 
         <p>Something: {this.props.auth.something}</p>
 
