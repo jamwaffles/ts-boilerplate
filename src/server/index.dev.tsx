@@ -12,12 +12,11 @@ import * as devMiddleware from 'webpack-dev-middleware';
 import * as koaWebpack from 'koa-webpack';
 import * as Webpack from 'webpack';
 
+import webpackConfig from '../../webpack.config.js';
 import logger from './logger';
 import { init } from './app';
 
 const app = new Koa();
-
-const webpackConfig = require('../../webpack.config.js');
 
 const compiler = Webpack(webpackConfig);
 

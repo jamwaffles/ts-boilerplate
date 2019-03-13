@@ -3,7 +3,7 @@ import { Button } from 'react-bulma-components';
 import { Helmet } from 'react-helmet';
 
 export default class NotFound extends React.PureComponent<any, any> {
-  render() {
+  public render() {
     return (
       <div>
         <Helmet>

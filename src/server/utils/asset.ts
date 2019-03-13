@@ -3,7 +3,7 @@ import { Option, None, Some } from 'funfix';
 
 import logger from '../logger';
 
-type Manifest = { [key: string]: string };
+interface Manifest { [key: string]: string }
 
 let manifest: Option<Manifest> = None;
 

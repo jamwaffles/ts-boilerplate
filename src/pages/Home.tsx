@@ -5,13 +5,13 @@ import { Helmet } from 'react-helmet';
 const rust = require('../../assets/rust.svg');
 
 export default class Home extends React.PureComponent<any, any> {
-  static fetchData() {
+  public static fetchData() {
     console.log("Homepage fetch data");
 
     return Promise.resolve();
   }
 
-  render() {
+  public render() {
     return (
       <div>
         <Helmet>
