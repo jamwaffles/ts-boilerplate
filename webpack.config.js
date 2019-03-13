@@ -81,7 +81,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.EnvironmentPlugin(['NODE_ENV', 'BASE_PATH']),
+    new webpack.EnvironmentPlugin({ NODE_ENV: 'development', BASE_PATH: '' }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
