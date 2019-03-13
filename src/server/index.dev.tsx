@@ -12,7 +12,7 @@ import * as devMiddleware from 'webpack-dev-middleware';
 import * as koaWebpack from 'koa-webpack';
 import * as Webpack from 'webpack';
 
-import webpackConfig from '../../webpack.config.js';
+const webpackConfig: any = require('../../webpack.config.js');
 import logger from './logger';
 import { init } from './app';
 
