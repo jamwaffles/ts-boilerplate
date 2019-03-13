@@ -1,24 +1,28 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { ReactNode } from 'react';
+import { connect, DispatchProp } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
 import { testAuthAction } from '../actions/auth';
 const small = require('../../assets/small.jpg');
 const large = require('../../assets/large.jpg');
 
-// TODO: FIx <any, any>
-class Auth extends React.PureComponent<any, any> {
-  public static fetchData() {
+interface AuthProps extends DispatchProp {
+  auth: { something: number }
+}
+
+class Auth extends React.PureComponent<AuthProps, {}> {
+  public static fetchData(): Promise<void> {
     console.log("Auth page fetch data");
 
     return Promise.resolve();
   }
 
-  public handleClick = () => {
+  public handleClick = (): void => {
     this.props.dispatch(testAuthAction(100))
   }
 
-  public render() {
+  public render(): ReactNode {
     return (
       <div>
         <Helmet>

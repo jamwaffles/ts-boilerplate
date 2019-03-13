@@ -3,13 +3,12 @@ import * as Router from 'koa-router';
 import { Context } from 'koa';
 import { Helmet } from 'react-helmet';
 import * as ReactDOMServer from 'react-dom/server';
-import { StaticRouter, StaticRouterContext, matchPath } from 'react-router';
+import { StaticRouter, matchPath } from 'react-router';
 
+import { StaticContext } from './types';
 import Container from './Container';
-import App, { routes } from '../App';
+import App, { routes, AppRoute } from '../App';
 import { createStore } from '../store';
-
-const isProduction = process.env.NODE_ENV === 'production';
 
 const basePath = process.env.BASE_PATH || '';
 
@@ -22,7 +21,7 @@ router.get('*', async (ctx: Context) => {
 
   let dataFetches: {}[] = [];
 
-  routes.some((route: any): boolean => {
+  routes.some((route: AppRoute): boolean => {
     const match = matchPath(ctx.request.path, route);
 
     if (match && route.component && typeof route.component.fetchData === 'function') {
@@ -34,10 +33,10 @@ router.get('*', async (ctx: Context) => {
 
   await Promise.all(dataFetches);
 
-  const context: { status?: number } = {};
+  const context: StaticContext = {};
 
   const page = ReactDOMServer.renderToString(
-    <StaticRouter basename={basePath} location={ctx.request.url} context={context as StaticRouterContext}>
+    <StaticRouter basename={basePath} location={ctx.request.url} context={context}>
       <App store={store} />
     </StaticRouter>
   );

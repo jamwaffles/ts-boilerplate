@@ -1,17 +1,18 @@
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { Button } from 'react-bulma-components';
 import { Helmet } from 'react-helmet';
 
 const rust = require('../../assets/rust.svg');
 
-export default class Home extends React.PureComponent<any, any> {
-  public static fetchData() {
+export default class Home extends React.PureComponent<{}, {}> {
+  public static fetchData(): Promise<void> {
     console.log("Homepage fetch data");
 
     return Promise.resolve();
   }
 
-  public render() {
+  public render(): ReactNode {
     return (
       <div>
         <Helmet>

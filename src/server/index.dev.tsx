@@ -1,18 +1,17 @@
 import { addHook } from 'pirates';
+import { Configuration } from 'webpack';
 
 // Convert image file imports into empty strings
 addHook(
-  (code: string, filename: string) => '',
+  () => '',
   { exts: [ '.jpg', '.jpeg', '.png', '.gif', '.png', '.svg' ], matcher: () => true }
 );
 
 import * as Koa from 'koa';
-import * as webpack from 'webpack';
-import * as devMiddleware from 'webpack-dev-middleware';
 import * as koaWebpack from 'koa-webpack';
 import * as Webpack from 'webpack';
 
-const webpackConfig: any = require('../../webpack.config.js');
+const webpackConfig: Configuration = require('../../webpack.config.js');
 import logger from './logger';
 import { init } from './app';
 
@@ -31,7 +30,7 @@ koaWebpack({
   hotClient: {
     port: port + 1
   }
-}).then((middleware: any) => {
+}).then((middleware) => {
   app.use(middleware);
 
   init(app);

@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { ReactElement } from 'react';
 
-const ExampleComponent = () => (
+const ExampleComponent = (): ReactElement => (
   <div>Hello</div>
 )
 

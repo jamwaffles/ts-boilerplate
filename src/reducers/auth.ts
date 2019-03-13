@@ -1,8 +1,13 @@
-import { TEST_AUTH_ACTION } from '../actions/auth';
+import { TEST_AUTH_ACTION, TestAuthAction } from '../actions/auth';
 
-export const defaultState = { something: 0 };
+export interface AuthState {
+  something: number,
+  loading?: boolean
+}
 
-export default function auth(state = defaultState, action = {} as any) {
+export const defaultState: AuthState = { something: 0 };
+
+export default function auth(state = defaultState, action: TestAuthAction): AuthState {
   switch(action.type) {
     case TEST_AUTH_ACTION:
       return {
