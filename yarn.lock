@@ -927,10 +927,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.9.tgz#f2d14df87b0739041bc53a7d75e3d77d726a3ec0"
   integrity sha512-Nha5b+jmBI271jdTMwrHiNXM+DvThjHOfyZtMX9kj/c/LUj2xiLHsG/1L3tJ8DjAoQN48cHwUwtqBotjyXaSdQ==
 
-"@types/puppeteer@^1.12.1":
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.12.1.tgz#f61f9e0da45e36cdbbeab3b088995a8a2cad47a4"
-  integrity sha512-6qpe7XXM93iWh8quEP8Ay516Vmfc2r+ZAxFH3Mt6fx3vzmZz+4Q+hYxc9PxeEIXJhWLAAPYAgAiM/vLHEUwGpw==
+"@types/puppeteer@^1.12.2":
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.12.2.tgz#5e3c8ab57fe3e0c9d75d8deeb6bf290b57321dd7"
+  integrity sha512-EGfxdNxqsEQiY6Ce+4rRD8PsDD18b5FWR+J/gWX7J/UKNRk1Pi9bircx0oADMNF2RdbyzmC+7TU95nwnerFwlA==
   dependencies:
     "@types/node" "*"
 
@@ -6021,6 +6021,11 @@ prepend-http@^1.0.1:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
+
+prettier@^1.16.4:
+  version "1.16.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
+  integrity sha512-ZzWuos7TI5CKUeQAtFd6Zhm2s6EpAD/ZLApIhsF9pRvRtM1RFo61dM/4MSRUA0SuLugA/zgrZD8m0BaY46Og7g==
 
 private@^0.1.6:
   version "0.1.8"
