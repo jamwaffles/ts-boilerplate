@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { ReactNode } from 'react';
-import { Button } from 'react-bulma-components';
-import { Helmet } from 'react-helmet';
+import * as React from "react";
+import { ReactNode } from "react";
+import { Button } from "react-bulma-components";
+import { Helmet } from "react-helmet";
 
-const rust = require('../../assets/rust.svg');
+const rust = require("../../assets/rust.svg");
 
 export default class Home extends React.PureComponent<{}, {}> {
   public static fetchData(): Promise<void> {
@@ -25,6 +25,6 @@ export default class Home extends React.PureComponent<{}, {}> {
 
         <img src={rust} />
       </div>
-    )
+    );
   }
 }

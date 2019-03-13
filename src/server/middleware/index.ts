@@ -1,1 +1,1 @@
-export { basePathRedirect } from './base-path-redirect';
+export { basePathRedirect } from "./base-path-redirect";

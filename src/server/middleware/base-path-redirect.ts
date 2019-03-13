@@ -1,6 +1,6 @@
-import { Context } from 'koa';
+import { Context } from "koa";
 
-const basePath = process.env.BASE_PATH || '';
+const basePath = process.env.BASE_PATH || "";
 
 // Redirect paths above $BASE_PATH (if set) to $BASE_PATH
 export async function basePathRedirect(ctx: Context, next: Function) {
@@ -8,5 +8,5 @@ export async function basePathRedirect(ctx: Context, next: Function) {
     return ctx.redirect(`${basePath}${ctx.path}`);
   }
 
-  await next()
+  await next();
 }

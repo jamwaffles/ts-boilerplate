@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ReactNode } from 'react';
-import { Helmet } from 'react-helmet';
+import * as React from "react";
+import { ReactNode } from "react";
+import { Helmet } from "react-helmet";
 
 export default class NotFound extends React.PureComponent<{}, {}> {
   public render(): ReactNode {
@@ -12,6 +12,6 @@ export default class NotFound extends React.PureComponent<{}, {}> {
 
         <h1>Not Found</h1>
       </div>
-    )
+    );
   }
 }
