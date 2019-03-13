@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+// import { expect } from 'chai';
 import { baseUrl, chrome } from './help';
 
 describe('Browser test sample', async () => {
