@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const devMode = process.env.NODE_ENV !== 'production';
 const basePath = process.env.BASE_PATH || '';
@@ -28,7 +30,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|jpeg|svg)$/i,
+        test: /\.(png|jpg|gif|jpeg|svg|woff|woff2)$/i,
         use: [
           {
             loader: 'url-loader',
@@ -86,7 +88,10 @@ module.exports = {
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
+      measureCompilationTime: true,
+    }),
     new ManifestPlugin({
       fileName: '../asset-manifest.json',
     }),
