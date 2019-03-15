@@ -7,7 +7,11 @@ import { createStore } from "./store";
 
 console.log("Entry point");
 
-const store = createStore();
+const stateEl: any = document.getElementById("initial_state");
+
+const initialState = stateEl ? JSON.parse(stateEl.dataset.state) : {};
+
+const store = createStore(initialState);
 
 const container = document.getElementById("app");
 
