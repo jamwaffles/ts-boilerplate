@@ -1585,6 +1585,11 @@ babel-plugin-file-loader@^1.1.1:
     fs-extra "^4.0.2"
     mime "^2.0.3"
 
+babel-plugin-transform-assets-import-to-string@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-assets-import-to-string/-/babel-plugin-transform-assets-import-to-string-1.2.0.tgz#9eb40850d637c67ce2f0fed38c99f365ae09beea"
+  integrity sha1-nrQIUNY3xnzi8P7TjJnzZa4Jvuo=
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
