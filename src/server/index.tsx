@@ -7,7 +7,7 @@ const app = new Koa();
 
 const port = process.env.PORT || 7175;
 
-logger.info("serverStarted", { port });
+logger.info({ port }, "serverStarted");
 
 init(app);
 

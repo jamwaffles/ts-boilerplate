@@ -35,7 +35,7 @@ koaWebpack({
 
   init(app);
 
-  logger.info("serverStarted", { port });
+  logger.info({ port }, "serverStarted");
 
   app.listen(port);
 });

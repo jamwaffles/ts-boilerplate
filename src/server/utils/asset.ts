@@ -22,7 +22,7 @@ function readManifest(): Manifest {
 
       return parsed;
     } catch (e) {
-      logger.error("assetManifestReadFailed", { e });
+      logger.error({ e }, "assetManifestReadFailed");
 
       return {};
     }
@@ -34,7 +34,7 @@ export default function asset(filename: string): string {
 
   const found = mapped || `/assets/${filename}`;
 
-  logger.debug("mapAsset", { filename, found, fromMapping: mapped });
+  logger.debug({ filename, found, fromMapping: mapped }, "mapAsset");
 
   return found;
 }
