@@ -89,7 +89,6 @@ module.exports = {
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     }),
     new ForkTsCheckerWebpackPlugin({
-      workers: ForkTsCheckerWebpackPlugin.TWO_CPUS_FREE,
       measureCompilationTime: true,
     }),
     new ManifestPlugin({
