@@ -17,12 +17,21 @@ const container = document.getElementById("app");
 
 const basePath = process.env.BASE_PATH || "";
 
-ReactDOM.render(
-  <BrowserRouter basename={basePath}>
-    <App store={store} />
-  </BrowserRouter>,
-  container
-);
+if (process.env.NODE_ENV === "production") {
+  ReactDOM.hydrate(
+    <BrowserRouter basename={basePath}>
+      <App store={store} />
+    </BrowserRouter>,
+    container,
+  );
+} else {
+  ReactDOM.render(
+    <BrowserRouter basename={basePath}>
+      <App store={store} />
+    </BrowserRouter>,
+    container,
+  );
+}
 
 import "bulma/bulma.sass";
 import "./styles/style.less";
