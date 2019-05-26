@@ -20,7 +20,7 @@ const common = {
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|jpeg|svg|woff|woff2)$/i,
+        test: /\.(png|jpg|gif|jpeg|svg|woff|woff2|ico)$/i,
         use: [
           {
             loader: "url-loader",
@@ -38,7 +38,13 @@ const common = {
     minimizer: [
       new TerserPlugin({
         cache: true,
-        parallel: true
+        parallel: true,
+        extractComments: false,
+      }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
       }),
     ],
   }
@@ -61,6 +67,18 @@ module.exports = [
     module: {
       rules: [
         ...common.module.rules,
+        // Specific favicon rules; favicons must be copied verbatim, instead of inlined by url-loader
+        {
+          test: /favicon.*\.(png|ico)$/i,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "[name].[ext]",
+              },
+            },
+          ],
+        },
         {
           test: /\.tsx?$/,
           exclude: /(node_modules|assets)/,
@@ -93,6 +111,7 @@ module.exports = [
       ],
     },
     plugins: [
+      // Set defaults for defined environment variables
       new webpack.EnvironmentPlugin({ NODE_ENV: "development", BASE_PATH: "" }),
       new MiniCssExtractPlugin({
         filename: devMode ? "[name].css" : "[name].[hash].css",
@@ -133,6 +152,11 @@ module.exports = [
     },
     target: "node",
     performance: false,
+    // Allow usage of these globals in code
+    node: {
+      __dirname: false,
+      __filename: false,
+    },
     module: {
       rules: [
         ...common.module.rules,
@@ -147,6 +171,15 @@ module.exports = [
           },
         },
       ],
+    },
+    plugins: [
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1,
+      }),
+    ],
+    // Disable optimisations for server bundle
+    optimization: {
+      minimizer: [],
     },
   },
 ];
