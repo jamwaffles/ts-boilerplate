@@ -3,21 +3,22 @@ import { Configuration } from "webpack";
 
 // Convert image file imports into empty strings
 addHook(() => "", {
-  exts: [".jpg", ".jpeg", ".png", ".gif", ".png", ".svg"],
+  exts: [".jpg", ".jpeg", ".png", ".gif", ".png", ".svg", ".ico"],
   matcher: () => true,
 });
 
-import * as Koa from "koa";
-import * as koaWebpack from "koa-webpack";
-import * as Webpack from "webpack";
+import Koa from "koa";
+import koaWebpack from "koa-webpack";
+import Webpack from "webpack";
 
-const webpackConfig: Configuration = require("../../webpack.config.js");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const webpackConfig: Configuration[] = require("../../webpack.config.js");
 import logger from "./logger";
 import { init } from "./app";
 
 const app = new Koa();
 
-const compiler = Webpack(webpackConfig);
+const compiler = Webpack(webpackConfig.find((c) => c.name === "browser"));
 
 const port = parseInt(process.env.PORT || "7175", 10);
 

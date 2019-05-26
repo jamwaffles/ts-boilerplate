@@ -1,6 +1,6 @@
-import * as mount from "koa-mount";
-import * as serve from "koa-static";
-import * as Koa from "koa";
+import mount from "koa-mount";
+import serve from "koa-static";
+import Koa from "koa";
 
 import router from "./router";
 

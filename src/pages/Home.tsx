@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ReactNode } from "react";
 import { Button } from "react-bulma-components";
 import { Helmet } from "react-helmet";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 require("@babel/register")({
   extensions: [".es6", ".es", ".jsx", ".js", ".mjs", ".ts", ".tsx"],
   plugins: [
@@ -6,7 +7,7 @@ require("@babel/register")({
       "transform-assets-import-to-string",
       {
         baseDir: "/assets",
-        baseUri: "http://replaced",
+        baseUri: "",
       },
     ],
   ],

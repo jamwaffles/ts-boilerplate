@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import * as React from "react";
+import React from "react";
 import { shallow } from "enzyme";
 
 import ExampleComponent from "./ExampleComponent";

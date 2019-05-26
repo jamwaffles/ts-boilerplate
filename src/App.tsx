@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Store } from "redux";
 import { Switch, Route, RouteProps } from "react-router";
 import { Provider } from "react-redux";

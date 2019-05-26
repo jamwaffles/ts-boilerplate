@@ -1,8 +1,8 @@
-import * as React from "react";
-import * as Router from "koa-router";
+import React from "react";
+import Router from "koa-router";
 import { Context } from "koa";
 import { Helmet } from "react-helmet";
-import * as ReactDOMServer from "react-dom/server";
+import ReactDOMServer from "react-dom/server";
 import { StaticRouter, matchPath } from "react-router";
 
 import { StaticContext } from "./types";
@@ -29,12 +29,12 @@ router.get("*", async (ctx: Context) => {
         dataFetches.push(
           route.component.fetchData(store.dispatch, match, {
             search: ctx.request.search,
-          })
+          }),
         );
       }
 
       return !!match;
-    }
+    },
   );
 
   await Promise.all(dataFetches);
@@ -44,7 +44,7 @@ router.get("*", async (ctx: Context) => {
   const page = ReactDOMServer.renderToString(
     <StaticRouter basename={basePath} location={ctx.request.url} context={context}>
       <App store={store} />
-    </StaticRouter>
+    </StaticRouter>,
   );
 
   const helmet = Helmet.renderStatic();
@@ -52,7 +52,7 @@ router.get("*", async (ctx: Context) => {
   const markup = ReactDOMServer.renderToString(
     <Container store={store} helmet={helmet}>
       {page}
-    </Container>
+    </Container>,
   );
 
   if (context.status) {

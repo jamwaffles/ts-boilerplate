@@ -23,6 +23,7 @@
     "outDir": "dist",
     "jsx": "React",
     "strict": true,
+    "esModuleInterop": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/typings"

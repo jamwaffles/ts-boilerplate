@@ -1,4 +1,4 @@
-import * as pino from "pino";
+import pino from "pino";
 import { levels } from "pino";
 import { Logger } from "pino";
 import { Writable } from "stream";
