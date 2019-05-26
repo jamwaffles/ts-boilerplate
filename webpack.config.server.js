@@ -1,9 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
+const basePath = process.env.BASE_PATH || '';
 
 module.exports = {
   entry: ['./src/server/index.tsx'],
