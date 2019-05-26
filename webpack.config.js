@@ -3,6 +3,8 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserPlugin = require('terser-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== "production";
 const basePath = process.env.BASE_PATH || "";
@@ -32,6 +34,14 @@ const common = {
       },
     ],
   },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true
+      }),
+    ],
+  }
 };
 
 module.exports = [
@@ -91,8 +101,13 @@ module.exports = [
       new ManifestPlugin({
         fileName: "../asset-manifest.json",
       }),
+      new BundleAnalyzerPlugin({
+        // Comment next line to analyse browser bundle
+        analyzerMode: 'disabled'
+      }),
     ],
     optimization: {
+      ...common.optimization,
       splitChunks: {
         cacheGroups: {
           styles: {
