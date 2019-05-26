@@ -8,8 +8,6 @@
     "start:dev": "nodemon",
     "build": "NODE_ENV=production webpack --mode production",
     "build:dev": "webpack --mode development",
-    "build:server": "NODE_ENV=production webpack --config webpack.config.server.js --mode production",
-    "build:server:dev": "webpack --config webpack.config.server.js --mode development",
     "test": "nyc mocha './src/**/*.test.{ts,tsx}'",
     "test:integration": "mocha --timeout 30000 --slow 5000 'browser-tests/**/*.test.ts'",
     "clean": "rm -rf dist",

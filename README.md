@@ -16,5 +16,6 @@ yarn start:dev
 
   ```bash
   BASE_PATH=/foo yarn build
-  BASE_PATH=/foo yarn build:server
   ```
+
+  You can build only one config by specifying `--config-name` like `yarn build --config-name server`
