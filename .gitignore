@@ -4,3 +4,4 @@ dist/
 .awcache
 coverage/
 .nyc_output/
+.eslintcache
