@@ -4,8 +4,8 @@ import { connect, DispatchProp } from "react-redux";
 import { Helmet } from "react-helmet";
 
 import { testAuthAction } from "../actions/auth";
-const small = require("../../assets/small.jpg");
-const large = require("../../assets/large.jpg");
+import small from "../../assets/small.jpg";
+import large from "../../assets/large.jpg";
 
 interface AuthProps extends DispatchProp {
   auth: { something: number };

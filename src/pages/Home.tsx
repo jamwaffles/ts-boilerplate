@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { Button } from "react-bulma-components";
 import { Helmet } from "react-helmet";
 
-const rust = require("../../assets/rust.svg");
+import rust from "../../assets/rust.svg";
 
 export default class Home extends React.PureComponent<{}, {}> {
   public static fetchData(): Promise<void> {
