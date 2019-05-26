@@ -14,6 +14,7 @@ const publicPath = `${basePath}/assets/`;
 
 const common = {
   cache: true,
+  devtool: devMode ? "cheap-module-source-map" : "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".less"],
   },
@@ -152,11 +153,6 @@ module.exports = [
     },
     target: "node",
     performance: false,
-    // Allow usage of these globals in code
-    node: {
-      __dirname: false,
-      __filename: false,
-    },
     module: {
       rules: [
         ...common.module.rules,
