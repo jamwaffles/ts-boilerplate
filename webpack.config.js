@@ -9,7 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const devMode = process.env.NODE_ENV !== "production";
 const basePath = process.env.BASE_PATH || "";
 
-const distPath = path.resolve(__dirname, "dist/assets");
+const distPath = path.resolve(__dirname, "dist");
 const publicPath = `${basePath}/assets/`;
 
 const common = {
@@ -53,7 +53,7 @@ module.exports = [
     output: {
       filename: devMode ? "main.js" : "main.[hash].js",
       chunkFilename: "[name].chunk.js",
-      path: distPath,
+      path: path.resolve(distPath, 'assets'),
       publicPath,
     },
     mode: devMode ? "development" : "production",
@@ -128,7 +128,7 @@ module.exports = [
     entry: ["./src/server/index.tsx"],
     output: {
       filename: "server.js",
-      path: distPath,
+      path: path.resolve(distPath, 'server'),
       publicPath,
     },
     target: "node",

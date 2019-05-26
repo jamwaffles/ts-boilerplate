@@ -4,7 +4,7 @@
   "description": "TS boilerplate",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/server/server.js",
     "start:dev": "nodemon",
     "build": "NODE_ENV=production webpack --mode production",
     "build:dev": "webpack --mode development",
