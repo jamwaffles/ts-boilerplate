@@ -25,7 +25,7 @@ const common = {
           {
             loader: "url-loader",
             options: {
-              name: devMode ? "[name].[ext]" : "[name].[hash].[ext]",
+              name: devMode ? "[name].[ext]" : "[name].[hash:5].[ext]",
               limit: 8192,
               fallback: "file-loader",
             },
@@ -57,7 +57,7 @@ module.exports = [
     name: "browser",
     entry: ["./src/index.tsx"],
     output: {
-      filename: devMode ? "main.js" : "main.[hash].js",
+      filename: devMode ? "main.js" : "main.[hash:5].js",
       chunkFilename: "[name].chunk.js",
       path: path.resolve(distPath, 'assets'),
       publicPath,
@@ -114,8 +114,8 @@ module.exports = [
       // Set defaults for defined environment variables
       new webpack.EnvironmentPlugin({ NODE_ENV: "development", BASE_PATH: "" }),
       new MiniCssExtractPlugin({
-        filename: devMode ? "[name].css" : "[name].[hash].css",
-        chunkFilename: devMode ? "[id].css" : "[id].[hash].css",
+        filename: devMode ? "[name].css" : "[name].[hash:5].css",
+        chunkFilename: devMode ? "[id].css" : "[id].[hash:5].css",
       }),
       new ManifestPlugin({
         fileName: "../asset-manifest.json",
