@@ -1,27 +1,28 @@
-module.exports = function (api) {
+module.exports = function(api) {
   api.cache(true);
 
   return {
-    "presets": [
+    presets: [
       [
         "@babel/preset-env",
         {
-          "useBuiltIns": false,
-          "targets": {
-            "node": true
-          }
-        }
+          useBuiltIns: false,
+          targets: {
+            node: true,
+          },
+        },
       ],
       "@babel/preset-typescript",
-      "@babel/preset-react"
+      "@babel/preset-react",
     ],
-    "plugins": [
+    plugins: [
+      "@babel/plugin-syntax-dynamic-import",
       [
         "@babel/plugin-proposal-class-properties",
         {
-          "loose": true
-        }
-      ]
-    ]
+          loose: true,
+        },
+      ],
+    ],
   };
-}
+};

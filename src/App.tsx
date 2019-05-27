@@ -5,9 +5,11 @@ import { Provider } from "react-redux";
 import { hot } from "react-hot-loader";
 
 import { StaticContext } from "./server/types";
-import Home from "./pages/Home";
-import Auth from "./pages/Auth";
-import NotFound from "./pages/NotFound";
+import asyncComponent from './components/AsyncComponent';
+
+const Home =  asyncComponent(() => import ("./pages/Home"));
+const Auth =  asyncComponent(() => import ("./pages/Auth"));
+const NotFound =  asyncComponent(() => import ("./pages/NotFound"));
 
 export interface AppRoute {
   path: string;
