@@ -2,6 +2,7 @@ import React from "react";
 import { ReactNode } from "react";
 import { Button } from "react-bulma-components";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 
 import rust from "../../assets/rust.svg";
 
@@ -23,7 +24,9 @@ export default class Home extends React.PureComponent<{}, {}> {
 
         <Button color="primary">My Bulma button</Button>
 
-        <img src={rust} />
+        <img src={rust} alt="Rust logo" />
+
+        <Link to="/auth">Go to auth page -></Link>
       </div>
     );
   }

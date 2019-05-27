@@ -7,21 +7,35 @@ import { StaticRouter, matchPath } from "react-router";
 
 import { StaticContext } from "./types";
 import Container from "./Container";
-import App, { routes, AppRoute } from "../App";
+import App, { appRoutes, AppRoute } from "../App";
 import { createStore } from "../store";
 
 const basePath = process.env.BASE_PATH || "";
 
 const router = new Router().prefix(basePath);
 
+// Resolve dynamic imports
+const routeResolvers: Promise<AppRoute>[] = appRoutes.map((route: any) =>
+  typeof route.component.then === "function"
+    ? route.component.then(
+        (resolved: any): AppRoute => {
+          return {
+            ...route,
+            component: resolved.default,
+          };
+        },
+      )
+    : route,
+);
+
 router.get("*", async (ctx: Context) => {
   const store = createStore();
 
-  // Dispatch actions here to initialise the store
-
   let dataFetches: {}[] = [];
 
-  routes.some(
+  const resolvedRoutes: AppRoute[] = await Promise.all(routeResolvers);
+
+  resolvedRoutes.some(
     (route: AppRoute): boolean => {
       const match = matchPath(ctx.request.path, route);
 
@@ -43,14 +57,14 @@ router.get("*", async (ctx: Context) => {
 
   const page = ReactDOMServer.renderToString(
     <StaticRouter basename={basePath} location={ctx.request.url} context={context}>
-      <App store={store} />
+      <App store={store} routes={resolvedRoutes} />
     </StaticRouter>,
   );
 
-  const helmet = Helmet.renderStatic();
+  const metadata = Helmet.renderStatic();
 
   const markup = ReactDOMServer.renderToString(
-    <Container store={store} helmet={helmet}>
+    <Container store={store} metadata={metadata}>
       {page}
     </Container>,
   );

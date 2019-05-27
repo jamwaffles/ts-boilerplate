@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 interface AsyncLoadingState {
   showLoadingSpinner: boolean;
@@ -23,10 +23,6 @@ export default class AsyncLoading extends React.PureComponent<{}, AsyncLoadingSt
   }
 
   public render() {
-    return (
-      <p>
-        One moment...
-      </p>
-    );
+    return <main>{this.state.showLoadingSpinner ? <p>One moment...</p> : null}</main>;
   }
 }

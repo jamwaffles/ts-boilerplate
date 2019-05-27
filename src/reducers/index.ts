@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 
 import auth from "./auth";
-import { AuthState } from "./auth";
 
 const rootReducer = combineReducers({
   auth,

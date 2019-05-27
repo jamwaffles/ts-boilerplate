@@ -19,22 +19,23 @@
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "suppressImplicitAnyIndexErrors": true,
+    "esModuleInterop": true,
     "rootDir": "src",
     "outDir": "dist",
     "jsx": "React",
     "strict": true,
-    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/typings"
-    ]
+    ],
+    "incremental": true
   },
   "include": [
     "src"
   ],
-  "paths": {
-    "assets/*": "image-mock.ts",
-    "*.jpg": "image-mock.ts",
-    "assets/small.jpg": "image-mock.ts",
-  }
+  "exclude": [
+    "src/assets"
+  ]
 }

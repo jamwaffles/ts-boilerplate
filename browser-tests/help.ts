@@ -1,4 +1,4 @@
-import * as puppeteer from "puppeteer";
+import puppeteer from "puppeteer";
 import { Page, Browser } from "puppeteer";
 
 const port = process.env.PORT || 7175;

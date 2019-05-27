@@ -9,6 +9,7 @@ module.exports = function(api) {
           useBuiltIns: false,
           targets: {
             node: true,
+            browsers: "> 5%",
           },
         },
       ],

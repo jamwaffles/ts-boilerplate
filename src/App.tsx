@@ -5,19 +5,23 @@ import { Provider } from "react-redux";
 import { hot } from "react-hot-loader";
 
 import { StaticContext } from "./server/types";
-import asyncComponent from './components/AsyncComponent';
+import asyncComponent from "./components/AsyncComponent";
 
-const Home =  asyncComponent(() => import ("./pages/Home"));
-const Auth =  asyncComponent(() => import ("./pages/Auth"));
-const NotFound =  asyncComponent(() => import ("./pages/NotFound"));
+// Notfound component is used inside `Status` so cannot be dynamically loaded
+import NotFound from "./pages/NotFound";
+
+// Dynamically load every page
+const Home = asyncComponent(() => import("./pages/Home"));
+const Auth = asyncComponent(() => import("./pages/Auth"));
 
 export interface AppRoute {
   path: string;
   exact?: boolean;
   component: RouteProps["component"] & { fetchData?: Function };
+  render?: RouteProps["render"];
 }
 
-export const routes: AppRoute[] = [
+export const appRoutes: AppRoute[] = [
   { path: "/", exact: true, component: Home },
   { path: "/auth", component: Auth },
 ];
@@ -36,19 +40,17 @@ function Status({ code, children }: { code: number; children: React.ReactNode })
   );
 }
 
-const App = ({ store }: { store: Store }) => (
+const App = ({ store, routes = appRoutes }: { store: Store; routes?: AppRoute[] }) => (
   <Provider store={store}>
-    <div>
-      <Switch>
-        {routes.map((route: AppRoute) => (
-          <Route key={route.path} {...route} />
-        ))}
+    <Switch>
+      {routes.map((route: AppRoute) => (
+        <Route key={route.path} {...route} />
+      ))}
 
-        <Status code={404}>
-          <NotFound />
-        </Status>
-      </Switch>
-    </div>
+      <Status code={404}>
+        <NotFound />
+      </Status>
+    </Switch>
   </Provider>
 );
 

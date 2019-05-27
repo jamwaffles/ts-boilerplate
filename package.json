@@ -12,7 +12,7 @@
     "test:integration": "mocha --timeout 30000 --slow 5000 'browser-tests/**/*.test.ts'",
     "clean": "rm -rf dist",
     "lint": "eslint --cache './{src,browser-tests,test}/**/*.{ts,tsx}'",
-    "prettier": "prettier './{src,server,browser-tests}/**/*.{ts,tsx}' './src/styles/*.{less,scss,css}'",
+    "prettier": "prettier './{src,server,browser-tests}/**/*.{ts,tsx}' './src/styles/**/*.{css,less,scss}'",
     "fmt": "npm run lint -- --fix && npm run prettier -- --write"
   },
   "author": "-",

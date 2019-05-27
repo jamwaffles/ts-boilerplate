@@ -5,8 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { createStore } from "./store";
 
-console.log("Entry point");
-
 const stateEl: any = document.getElementById("initial_state");
 
 const initialState = stateEl ? JSON.parse(stateEl.dataset.state) : {};
@@ -17,21 +15,14 @@ const container = document.getElementById("app");
 
 const basePath = process.env.BASE_PATH || "";
 
-if (process.env.NODE_ENV === "production") {
-  ReactDOM.hydrate(
-    <BrowserRouter basename={basePath}>
-      <App store={store} />
-    </BrowserRouter>,
-    container,
-  );
-} else {
-  ReactDOM.render(
-    <BrowserRouter basename={basePath}>
-      <App store={store} />
-    </BrowserRouter>,
-    container,
-  );
-}
+const _render = process.env.NODE_ENV === "production" ? ReactDOM.hydrate : ReactDOM.render;
+
+_render(
+  <BrowserRouter basename={basePath}>
+    <App store={store} />
+  </BrowserRouter>,
+  container,
+);
 
 import "bulma/bulma.sass";
 import "./styles/style.less";
