@@ -24,5 +24,4 @@ _render(
   container,
 );
 
-import "bulma/bulma.sass";
-import "./styles/style.less";
+import "./styles/style.scss";

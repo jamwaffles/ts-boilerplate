@@ -102,7 +102,7 @@ module.exports = [
         },
 
         {
-          test: /\.sass$/,
+          test: /\.s(c|a)ss$/,
           use: [
             devMode ? "style-loader" : MiniCssExtractPlugin.loader,
             "css-loader",
