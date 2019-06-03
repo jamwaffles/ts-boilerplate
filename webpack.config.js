@@ -3,8 +3,9 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const TerserPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const TerserPlugin = require("terser-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 const devMode = process.env.NODE_ENV !== "production";
 const basePath = process.env.BASE_PATH || "";
@@ -44,11 +45,11 @@ const common = {
       }),
       new OptimizeCSSAssetsPlugin({
         cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
+          preset: ["default", { discardComments: { removeAll: true } }],
         },
       }),
     ],
-  }
+  },
 };
 
 module.exports = [
@@ -60,7 +61,7 @@ module.exports = [
     output: {
       filename: devMode ? "main.js" : "main.[hash:5].js",
       chunkFilename: "[name].chunk.js",
-      path: path.resolve(distPath, 'assets'),
+      path: path.resolve(distPath, "assets"),
       publicPath,
     },
     mode: devMode ? "development" : "production",
@@ -83,13 +84,7 @@ module.exports = [
         {
           test: /\.tsx?$/,
           exclude: /(node_modules|assets)/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              cacheDirectory: true,
-              plugins: devMode ? ["react-hot-loader/babel"] : [],
-            },
-          },
+          use: [{ loader: "ts-loader", options: { transpileOnly: devMode } }],
         },
 
         {
@@ -112,6 +107,13 @@ module.exports = [
       ],
     },
     plugins: [
+      ...(devMode
+        ? [
+            new ForkTsCheckerWebpackPlugin({
+              measureCompilationTime: true
+            })
+          ]
+        : []),
       // Set defaults for defined environment variables
       new webpack.EnvironmentPlugin({ NODE_ENV: "development", BASE_PATH: "" }),
       new MiniCssExtractPlugin({
@@ -123,7 +125,7 @@ module.exports = [
       }),
       new BundleAnalyzerPlugin({
         // Comment next line to analyse browser bundle
-        analyzerMode: 'disabled'
+        analyzerMode: "disabled",
       }),
     ],
     optimization: {
@@ -148,7 +150,7 @@ module.exports = [
     entry: ["./src/server/index.tsx"],
     output: {
       filename: "server.js",
-      path: path.resolve(distPath, 'server'),
+      path: path.resolve(distPath, "server"),
       publicPath,
     },
     target: "node",
@@ -159,12 +161,7 @@ module.exports = [
         {
           test: /\.tsx?$/,
           exclude: /(node_modules|assets)/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              cacheDirectory: true,
-            },
-          },
+          use: "ts-loader",
         },
       ],
     },

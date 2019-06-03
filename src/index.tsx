@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
+import "./styles/style.scss";
+
 import App from "./App";
 import { createStore } from "./store";
 
@@ -24,4 +26,6 @@ _render(
   container,
 );
 
-import "./styles/style.scss";
+if ((module as any).hot) {
+  (module as any).hot.accept();
+}

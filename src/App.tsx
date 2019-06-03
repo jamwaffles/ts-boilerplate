@@ -2,7 +2,6 @@ import React from "react";
 import { Store } from "redux";
 import { Switch, Route, RouteProps } from "react-router";
 import { Provider } from "react-redux";
-import { hot } from "react-hot-loader";
 
 import { StaticContext } from "./server/types";
 import asyncComponent from "./components/AsyncComponent";
@@ -54,4 +53,4 @@ const App = ({ store, routes = appRoutes }: { store: Store; routes?: AppRoute[] 
   </Provider>
 );
 
-export default hot(module)(App);
+export default App;

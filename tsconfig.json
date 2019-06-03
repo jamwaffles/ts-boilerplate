@@ -24,13 +24,13 @@
     "outDir": "dist",
     "jsx": "React",
     "strict": true,
+    "sourceMap": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/typings"
-    ],
-    "incremental": true
+    ]
   },
   "include": [
     "src"
