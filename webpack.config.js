@@ -18,6 +18,7 @@ const common = {
   devtool: devMode ? "cheap-module-source-map" : "source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json", ".less"],
+    modules: ['node_modules', 'src'],
   },
   module: {
     rules: [
@@ -162,6 +163,16 @@ module.exports = [
           test: /\.tsx?$/,
           exclude: /(node_modules|assets)/,
           use: "ts-loader",
+        },
+
+        {
+          test: /\.s(c|a)ss$/,
+          use: [
+            // "style-loader",
+            // "css-loader",
+            // "sass-loader",
+            "null-loader"
+          ],
         },
       ],
     },

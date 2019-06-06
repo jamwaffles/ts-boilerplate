@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactNode } from "react";
-import { Button } from "react-bulma-components";
+import Button from "react-bulma-components/lib/components/button";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
