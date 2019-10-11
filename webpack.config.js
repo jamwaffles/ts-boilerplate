@@ -61,7 +61,7 @@ module.exports = [
     entry: ["./src/index.tsx"],
     output: {
       filename: devMode ? "main.js" : "main.[hash:5].js",
-      chunkFilename: "[name].chunk.js",
+      chunkFilename: "[name].chunk.[hash:5].js",
       path: path.resolve(distPath, "assets"),
       publicPath,
     },
